@@ -10,9 +10,9 @@ export const productApiSlice = createApi({
         getProducts: builder.query({
             query: () => "/products", // Endpoint de productos
         }),
-        // getProductById: builder.query({
-        //     query: (id) => `/products/${id}`, // Endpoint para un producto específico
-        // }),
+        getProductById: builder.query({
+            query: (id) => `/products/${id}`, // Endpoint para un producto específico
+        }),
         // createProduct: builder.mutation({
         //     query: (product) => ({
         //         url: "/products",
@@ -38,7 +38,7 @@ export const productApiSlice = createApi({
 
 export const {
     useGetProductsQuery,
-    // useGetProductByIdQuery,
+    useGetProductByIdQuery,
     // useCreateProductMutation,
     // useUpdateProductMutation,
     // useDeleteProductMutation,
