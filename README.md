@@ -1,6 +1,6 @@
-# Payment and Product Management with Redux Toolkit and Next.js
+# Frontend for Product and Payment Management System
 
-Este proyecto es una aplicación de gestión de productos y pagos, construida con **Next.js**, **Redux Toolkit**, y TypeScript. Integra funcionalidades de selección de productos, pagos con tarjeta mediante una pasarela de pagos, y flujos completos desde la selección de un producto hasta el resumen de la transacción.
+Este proyecto es el frontend del sistema de gestión de productos y pagos. Ha sido desarrollado con **Next.js**, **Redux Toolkit**, y **TypeScript**. Permite a los usuarios explorar productos, realizar pagos mediante una pasarela de pagos y revisar el estado de las transacciones.
 
 ## Tecnologías Principales
 
@@ -31,13 +31,23 @@ Contiene toda la lógica relacionada con Redux y las llamadas API:
 - **`features/quotes`**: Ejemplo de uso de Redux Toolkit con otro dominio de estado.
 - **`store.ts`**: Configuración del store de Redux.
 
+## Configuración del Entorno
+
+Crea un archivo `.env` en la raíz del proyecto con el siguiente contenido:
+
+```env
+NEXT_PUBLIC_BASE_URL=http://localhost:3000
+```
+
+Asegúrate de cambiar la URL cuando despliegues el backend en un entorno de producción.
+
 ## Instalación
 
 1. Clona el repositorio:
 
    ```bash
    git clone <URL_DEL_REPOSITORIO>
-   cd <NOMBRE_DEL_PROYECTO>
+   cd frontend
    ```
 
 2. Instala las dependencias:
@@ -46,13 +56,7 @@ Contiene toda la lógica relacionada con Redux y las llamadas API:
    npm install
    ```
 
-3. Configura las variables de entorno creando un archivo `.env` en la raíz del proyecto. Un ejemplo:
-
-   ```env
-   NEXT_PUBLIC_BASE_URL=http://localhost:3000
-   ```
-
-4. Inicia el servidor de desarrollo:
+3. Inicia el servidor de desarrollo:
 
    ```bash
    npm run dev
@@ -116,3 +120,4 @@ Las contribuciones son bienvenidas. Si encuentras un problema o deseas agregar u
 ## Licencia
 
 Este proyecto está bajo la licencia **MIT**.
+
