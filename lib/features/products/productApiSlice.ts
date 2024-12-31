@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 // Usamos una variable de entorno para la URL base del backend
-const baseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 export const productApiSlice = createApi({
     reducerPath: "productApi", // Path para el store

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = process.env.REACT_APP_BASE_URL || "http://localhost:3000";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
 
 export const getProducts = async () => {
   const response = await axios.get(`${baseUrl}/products`);
@@ -13,3 +13,14 @@ export const createProduct = async (product: any) => {
 };
 
 // Otros métodos como updateProduct, deleteProduct, etc., también pueden añadirse
+
+// metodo para las transaciones
+export const createTransaction = async (data: any) => {
+    try {
+      const response = await axios.post(`${baseUrl}/transactions`, data);
+      return response.data;
+    } catch (error) {
+      console.error("Error creating transaction:", error);
+      throw error;
+    }
+  };
