@@ -1,29 +1,118 @@
-# Redux Toolkit TypeScript Example
+# Payment and Product Management with Redux Toolkit and Next.js
 
-This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
+Este proyecto es una aplicación de gestión de productos y pagos, construida con **Next.js**, **Redux Toolkit**, y TypeScript. Integra funcionalidades de selección de productos, pagos con tarjeta mediante una pasarela de pagos, y flujos completos desde la selección de un producto hasta el resumen de la transacción.
 
-**Redux Toolkit**(also known as "RTK" for short) provides a standardized way to write Redux logic. It includes utilities that help simplify many common use cases, including [store setup](https://redux-toolkit.js.org/api/configureStore), [creating reducers and writing immutable update logic](https://redux-toolkit.js.org/api/createreducer), and even [creating entire "slices" of state at once](https://redux-toolkit.js.org/api/createslice). This example showcases each of these features in conjunction with Next.js.
+## Tecnologías Principales
 
-## Deploy Your Own
+- [Next.js](https://nextjs.org/) - Framework de React para aplicaciones web.
+- [Redux Toolkit](https://redux-toolkit.js.org/) - Librería para la gestión del estado global.
+- [TypeScript](https://www.typescriptlang.org/) - Superconjunto tipado de JavaScript.
+- [Ant Design](https://ant.design/) - Librería de componentes UI.
+- [Axios](https://axios-http.com/) - Cliente HTTP para manejar solicitudes API.
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## Estructura del Proyecto
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-redux&project-name=with-redux&repository-name=with-redux)
+### Carpeta `app`
 
-## How to Use
+Contiene las páginas principales del flujo de la aplicación:
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+- **`checkout`**: Maneja la información de pago y envío.
+- **`summary`**: Muestra el resumen de la transacción después del pago.
+- **`components`**: Componentes reutilizables, como la lista de productos y el formulario de pago.
+- **`styles`**: Estilos globales y específicos de la aplicación.
 
-```bash
-npx create-next-app --example with-redux with-redux-app
-```
+### Carpeta `lib`
 
-```bash
-yarn create next-app --example with-redux with-redux-app
-```
+Contiene toda la lógica relacionada con Redux y las llamadas API:
 
-```bash
-pnpm create next-app --example with-redux with-redux-app
-```
+- **`features/products`**: Manejo del estado global de los productos.
+  - `productApiSlice.ts`: Endpoints API para productos.
+  - `productSlice.ts`: Reducer para la gestión del estado.
+- **`features/quotes`**: Ejemplo de uso de Redux Toolkit con otro dominio de estado.
+- **`store.ts`**: Configuración del store de Redux.
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+## Instalación
+
+1. Clona el repositorio:
+
+   ```bash
+   git clone <URL_DEL_REPOSITORIO>
+   cd <NOMBRE_DEL_PROYECTO>
+   ```
+
+2. Instala las dependencias:
+
+   ```bash
+   npm install
+   ```
+
+3. Configura las variables de entorno creando un archivo `.env` en la raíz del proyecto. Un ejemplo:
+
+   ```env
+   NEXT_PUBLIC_BASE_URL=http://localhost:3000
+   ```
+
+4. Inicia el servidor de desarrollo:
+
+   ```bash
+   npm run dev
+   ```
+
+   Por defecto, la aplicación se ejecutará en `http://localhost:3000`.
+
+## Funcionalidades
+
+### Gestión de Productos
+
+- Lista de productos disponibles en `/products`.
+- Visualización del detalle de un producto al seleccionarlo.
+- Estado global de productos manejado con Redux Toolkit.
+
+### Flujo de Pagos
+
+1. **Selección de Producto**: Selecciona un producto desde la página principal.
+2. **Formulario de Pago**: Completa los detalles de la tarjeta y la dirección de entrega.
+3. **Resumen de Transacción**: Revisa los detalles de la transacción aprobada.
+
+### Pasarela de Pagos
+
+- Se utiliza una API para manejar la tokenización de tarjetas y la creación de transacciones.
+- Incluye autenticación 3DS para tarjetas compatibles.
+
+## Scripts Disponibles
+
+- `npm run dev`: Inicia el servidor de desarrollo.
+- `npm run build`: Construye la aplicación para producción.
+- `npm run start`: Sirve la aplicación construida.
+
+## Deploy
+
+Puedes desplegar esta aplicación en cualquier servicio que soporte aplicaciones Node.js. Por ejemplo, [Vercel](https://vercel.com/):
+
+1. Instala la CLI de Vercel:
+
+   ```bash
+   npm i -g vercel
+   ```
+
+2. Ejecuta el comando:
+
+   ```bash
+   vercel
+   ```
+
+3. Sigue las instrucciones para configurar y desplegar tu proyecto.
+
+## Mejoras Futuras
+
+- Agregar autenticación para usuarios.
+- Implementar la cancelación de transacciones.
+- Mejorar la experiencia de usuario en el flujo de pago.
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Si encuentras un problema o deseas agregar una nueva funcionalidad, abre un [issue](https://github.com/) o crea un pull request.
+
+## Licencia
+
+Este proyecto está bajo la licencia **MIT**.
