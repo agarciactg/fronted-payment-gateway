@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { Spin, Typography, Card, Alert } from "antd";
+import { useSearchParams, useRouter } from "next/navigation"; // Agregar useRouter para la redirección
+import { Spin, Typography, Card, Alert, Button } from "antd";
 import axios from "axios";
 
 const { Title, Text } = Typography;
@@ -10,6 +10,7 @@ const { Title, Text } = Typography;
 const TransactionSummary = () => {
     const searchParams = useSearchParams();
     const transactionId = searchParams.get("transactionId"); // Obtener el ID de la transacción desde los parámetros de búsqueda
+    const router = useRouter(); // Hook para redirección
 
     const [transactionDetails, setTransactionDetails] = useState<any>(null);
     const [loading, setLoading] = useState(true);
@@ -81,6 +82,14 @@ const TransactionSummary = () => {
                     <Text strong>Merchant:</Text> {transactionDetails.merchant.name}
                 </div>
             </Card>
+            {/* Botón para redirigir a la lista de productos */}
+            <Button
+                type="primary"
+                style={{ marginTop: 20 }}
+                onClick={() => router.push("/")} // Redirige a la lista de productos
+            >
+                Go to Products
+            </Button>
         </div>
     );
 };
