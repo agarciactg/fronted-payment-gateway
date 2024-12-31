@@ -4,7 +4,8 @@ const productSlice = createSlice({
   name: "products",
   initialState: {
     items: [],
-    status: "idle", // Puede ser 'idle', 'loading', 'succeeded', o 'failed'
+    selectedProduct: null, // Campo para el producto seleccionado
+    status: "idle",
     error: null,
   },
   reducers: {
@@ -14,8 +15,19 @@ const productSlice = createSlice({
     clearProducts(state) {
       state.items = [];
     },
+    setSelectedProduct(state, action) {
+      state.selectedProduct = action.payload; // Establecer producto seleccionado
+    },
+    clearSelectedProduct(state) {
+      state.selectedProduct = null; // Limpiar producto seleccionado
+    },
   },
 });
 
-export const { setProducts, clearProducts } = productSlice.actions;
+export const {
+  setProducts,
+  clearProducts,
+  setSelectedProduct,
+  clearSelectedProduct,
+} = productSlice.actions;
 export default productSlice.reducer;

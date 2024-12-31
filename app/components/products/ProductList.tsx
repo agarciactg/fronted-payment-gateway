@@ -11,7 +11,7 @@ const { Title } = Typography;
 const ProductList = () => {
     const { data: products, isLoading, isError, error } = useGetProductsQuery();
     const [isModalVisible, setIsModalVisible] = useState(false);
-    const [selectedProductId, setSelectedProductId] = useState<number | null>(null);
+    const [selectedProductId, setSelectedProductId] = useState<any>(null);
     const router = useRouter();
     const { data: productDetails, isLoading: isDetailsLoading } =
         useGetProductByIdQuery(selectedProductId, { skip: !selectedProductId }); // Evita la consulta inicial sin ID
@@ -23,7 +23,7 @@ const ProductList = () => {
 
     const handleCheckout = (productId: number) => {
         router.push(`/checkout?productId=${productId}`);
-    };
+      };
 
     const handleCloseModal = () => {
         setIsModalVisible(false);

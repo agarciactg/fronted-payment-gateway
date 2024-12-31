@@ -8,6 +8,9 @@ import styles from "../styles/layout.module.css";
 export const Nav = () => {
   const pathname = usePathname();
 
+  // Suponiendo que el transactionId se almacena en localStorage
+  const transactionId = typeof window !== "undefined" ? localStorage.getItem("transaction_id") : null;
+
   return (
     <nav className={styles.nav}>
       <Link
@@ -40,6 +43,16 @@ export const Nav = () => {
       >
         Checkout
       </Link>
+      {transactionId && (
+        <Link
+          className={`${styles.link} ${
+            pathname === "/summary" ? styles.active : ""
+          }`}
+          href={`/summary?transactionId=${transactionId}`}
+        >
+          Summary
+        </Link>
+      )}
     </nav>
   );
 };

@@ -5,6 +5,8 @@ import CreditCardDeliveryInfo from "../components/checkout/CreditCardDeliveryInf
 import { useSearchParams } from "next/navigation";
 import { Spin, Typography } from "antd";
 import axios from "axios";
+import { useAppDispatch } from "@/lib/hooks";
+import { setSelectedProduct } from "@/lib/features/products/productSlice";
 
 const { Title, Text } = Typography;
 
@@ -16,6 +18,8 @@ const CheckoutPage = () => {
     const [productDetails, setProductDetails] = useState<any>(null);
     const [loading, setLoading] = useState(true);
 
+    const dispatch = useAppDispatch(); // Hook para usar el dispatch
+
     useEffect(() => {
         if (productId) {
           const fetchProductDetails = async () => {
@@ -23,7 +27,8 @@ const CheckoutPage = () => {
               const response = await axios.get(
                 `${process.env.NEXT_PUBLIC_BASE_URL}/products/${productId}`
               );
-              setProductDetails(response.data);
+              setProductDetails(response.data);   // almacenar este resultado en el redux
+              dispatch(setSelectedProduct(response.data)); // Guarda en Redux
             } catch (error) {
               console.error("Error fetching product details:", error);
             } finally {
@@ -45,7 +50,7 @@ const CheckoutPage = () => {
     <div style={{ padding: "20px" }}>
       <Title level={2}>Checkout</Title>
       <p>
-        You are checking out with product ID: <strong>{productId}</strong>
+        You are checking out with product ID: <strong>{productDetails.id}</strong>
       </p>
 
       <div>
@@ -61,6 +66,11 @@ const CheckoutPage = () => {
       <div>
         <Text>
           <strong>Price:</strong> ${productDetails.price}
+        </Text>
+      </div>
+      <div>
+        <Text>
+          <strong>stock:</strong> {productDetails.stock}
         </Text>
       </div>
       <CreditCardDeliveryInfo />
